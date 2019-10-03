@@ -1,7 +1,8 @@
 <?php
 session_start();
-$username = $_POST['username'];
-$password = $_POST['password'];
+$salt = 'jh0n4t4c3s4r';
+$username = base64_encode($_POST['username']);
+$password = md5($_POST['password'].$salt);
 
 $con = mysqli_connect('localhost', 'root', '');
 mysqli_select_db($con,'chatbox');

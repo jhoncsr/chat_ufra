@@ -4,11 +4,12 @@ if(isset($_POST['submit'])) {
 
 	$con = mysqli_connect('localhost', 'root', '');
 	mysqli_select_db($con,'chatbox');
-	
-	$uname = $_POST['username'];
-	$pword = $_POST['password'];
-	$pword2 = $_POST['password2'];
-	
+	$salt = 'jh0n4t4c3s4r';
+	$uname = base64_encode($_POST['username']);
+	$pword = md5($_POST['password'].$salt);
+	$pword2 = md5($_POST['password2'].$salt);
+ 
+
 	if($pword != $pword2) {
 		echo "Senhas não são a mesma. <br>";
 	}

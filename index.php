@@ -78,7 +78,7 @@ $(document).ready(function(e){
 </head>
 <body>
 <form name="form1">
-Seu Nome: <b><?php echo $_SESSION['username']; ?></b> <br />
+Seu Nome: <b><?php echo base64_decode($_SESSION['username']); ?></b> <br />
 Digite sua mensagem: <br />
 <textarea name="msg"></textarea><br />
 <a href="#" onclick="submitChat()">Enviar</a><br /><br />
