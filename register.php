@@ -2,9 +2,7 @@
 
 if(isset($_POST['submit'])) {
 
-	$con = mysqli_connect('localhost', 'root', '');
-	mysqli_select_db($con,'chatbox');
-	$salt = 'jh0n4t4c3s4r';
+    include_once ("conexao.php");
 	$uname = base64_encode($_POST['username']);
 	$pword = md5($_POST['password'].$salt);
 	$pword2 = md5($_POST['password2'].$salt);

@@ -1,11 +1,8 @@
 <?php
 session_start();
-$salt = 'jh0n4t4c3s4r';
+include_once ("conexao.php");
 $username = base64_encode($_POST['username']);
 $password = md5($_POST['password'].$salt);
-
-$con = mysqli_connect('localhost', 'root', '');
-mysqli_select_db($con,'chatbox');
 
 $result = mysqli_query($con, "SELECT * FROM users WHERE username='$username' AND password='$password'");
 

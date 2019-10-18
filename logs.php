@@ -1,10 +1,9 @@
 <?php
-
-$con = mysqli_connect('localhost','root','');
-mysqli_select_db($con,'chatbox');
+include_once ("conexao.php");
+include_once ("crypt.php");
 
 $result1 = mysqli_query($con, "SELECT * FROM logs ORDER BY id DESC");
 
 while($extract = mysqli_fetch_array($result1)) {
-	echo "<span>" . base64_decode($extract['username']) . "</span>: <span>" . base64_decode($extract['msg']) . "</span><br />";
+	echo "<span>" . base64_decode($extract['username']) . "</span>: <span>" . msgc($extract['msg'], 'd' ) . "</span><br />";
 }	

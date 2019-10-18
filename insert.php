@@ -1,15 +1,15 @@
 <?php
 session_start();
+include_once ("conexao.php");
+include_once ("crypt.php");
 $uname = $_SESSION['username'];
-$msg = base64_encode($_REQUEST['msg']);
+$msg = msgc($_REQUEST['msg'],'e');
 
-$con = mysqli_connect('localhost','root','');
-mysqli_select_db($con,'chatbox');	
 
 mysqli_query($con, "INSERT INTO logs (`username`, `msg`) VALUES ('$uname', '$msg')");
 
 $result1 = mysqli_query($con, "SELECT * FROM logs ORDER BY id DESC");
 
 while($extract = mysqli_fetch_array($result1)) {
-	echo "<span>" . base64_decode($extract['username']) . "</span>: <span>" . base64_decode($extract['msg']) . "</span><br />";
+	echo "<span>" . base64_decode($extract['username']) . "</span>: <span>" . msgc($extract['msg'], 'd' ) . "</span><br />";
 }
